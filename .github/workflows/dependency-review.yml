@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0
+
+name: dependency-review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@d211a39090cba0cdce485f2a0b1f28f39ccda0c9 # v3.3.2
+        with:
+          retry-on-snapshot-warnings: true
+          retry-on-snapshot-warnings-timeout: 600

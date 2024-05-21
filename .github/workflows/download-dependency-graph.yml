@@ -1,0 +1,19 @@
+name: download-submit-dependency-graph
+
+on:
+  workflow_run:
+    workflows: ['upload-dependency-graph']
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  submit-dependency-graph:
+    runs-on: ubuntu-latest
+    steps:
+      # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+      - name: Download and submit dependency graph
+        uses: gradle/actions/dependency-submission@d211a39090cba0cdce485f2a0b1f28f39ccda0c9 # v3.3.2
+        with:
+          dependency-graph: download-and-submit # Download saved dependency-graph and submit
