@@ -69,6 +69,7 @@ publishing {
                 }
                 developers {
                     developer {
+                        id = 'consensys'
                         name = 'Protocols Team'
                         email = 'devops@consensys.net'
                     }
@@ -90,6 +91,15 @@ publishing {
 }
 
 jreleaser {
+    gitRootSearch = true
+    release {
+        github {
+            commitAuthor {
+                name = 'Protocols Team'
+                email = 'devops@consensys.net'
+            }
+        }
+    }
     signing {
         active = 'ALWAYS'
         armored = true
