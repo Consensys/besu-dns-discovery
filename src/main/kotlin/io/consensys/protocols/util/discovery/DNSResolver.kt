@@ -19,7 +19,6 @@ package io.consensys.protocols.util.discovery
  */
 
 import io.vertx.core.Vertx
-import io.vertx.core.VertxException
 import io.vertx.core.dns.DnsClient
 import io.vertx.core.dns.DnsClientOptions
 import io.vertx.core.dns.DnsException
@@ -32,7 +31,6 @@ import org.apache.tuweni.crypto.SECP256K1
 import org.apache.tuweni.devp2p.EthereumNodeRecord
 import org.slf4j.LoggerFactory
 import java.io.IOException
-import java.lang.Exception
 
 /**
  * Resolves a set of ENR nodes from a host name.
@@ -155,17 +153,10 @@ class DNSResolver @JvmOverloads constructor(
         return null
       }
     } catch (e: DnsException) {
-      logger.debug("DNS query error with $domainName", e)
+      logger.warn("DNS query error with $domainName", e)
       return null
     } catch (e: IOException) {
       logger.warn("I/O exception contacting remote DNS server when resolving $domainName", e)
-      return null
-    } catch (e: VertxException) {
-      // timeouts are common
-      logger.warn("Vertx exception contacting remote DNS server when resolving $domainName", e)
-      return null
-    } catch (e: Exception) {
-      logger.warn("Exception contacting remote DNS server when resolving $domainName", e)
       return null
     }
   }
