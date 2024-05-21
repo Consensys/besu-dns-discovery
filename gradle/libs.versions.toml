@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: Apache-2.0
+
+[versions]
+tuweni = "2.4.2"
+vertx = "4.5.7" # Upstream Tuweni is using 4.4.4
+slf4j = "2.0.7"
+bouncycastle = "1.70"
+
+[libraries]
+tuweni-bytes = {module = "io.tmio:tuweni-bytes", version.ref = "tuweni"}
+tuweni-concurrent = {module = "io.tmio:tuweni-concurrent", version.ref = "tuweni"}
+tuweni-concurrent-coroutines = {module = "io.tmio:tuweni-concurrent-coroutines", version.ref = "tuweni"}
+tuweni-crypto = {module = "io.tmio:tuweni-crypto", version.ref = "tuweni"}
+tuweni-devp2p = {module = "io.tmio:tuweni-devp2p", version.ref = "tuweni"}
+tuweni-io = {module = "io.tmio:tuweni-io", version.ref = "tuweni"}
+tuweni-kv = {module = "io.tmio:tuweni-kv", version.ref = "tuweni"}
+tuweni-merkle-trie = {module = "io.tmio:tuweni-merkle-trie", version.ref = "tuweni"}
+tuweni-rlp = {module = "io.tmio:tuweni-rlp", version.ref = "tuweni"}
+tuweni-junit = {module = "io.tmio:tuweni-junit", version.ref = "tuweni"}
+
+vertx-core = { module = "io.vertx:vertx-core", version.ref = "vertx" }
+vertx-lang-kotlin = { module = "io.vertx:vertx-lang-kotlin", version.ref = "vertx" }
+vertx-lang-kotlin-coroutines = { module = "io.vertx:vertx-lang-kotlin-coroutines", version.ref = "vertx" }
+
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+bcpkix-jdk15on = { module = "org.bouncycastle:bcpkix-jdk15on", version.ref = "bouncycastle" }
+bcprov-jdk15on = { module = "org.bouncycastle:bcprov-jdk15on", version.ref = "bouncycastle" }
+
+[bundles]
+tuweni = ["tuweni-bytes", "tuweni-concurrent", "tuweni-concurrent-coroutines", "tuweni-crypto", "tuweni-devp2p", "tuweni-io", "tuweni-kv", "tuweni-merkle-trie", "tuweni-rlp"]
+vertx = ["vertx-core", "vertx-lang-kotlin", "vertx-lang-kotlin-coroutines"]
+
+[plugins]
+jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.22" }
+jreleaser = {id = "org.jreleaser", version = "1.12.0"}
