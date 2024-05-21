@@ -1,0 +1,11 @@
+Copyright (c) 2024. ConsenSys Software Inc.
+
+SPDX-License-Identifier: Apache-2.0
+
+This software contains code which have been adapted from:
+
+|   Product  |                 Link                    | License
+|------------|-----------------------------------------|-----------
+| Tuweni     | https://github.com/tmio/tuweni          | Apache-2.0
+
+See gradle/libs.versions.toml file for libraries used by this software.
