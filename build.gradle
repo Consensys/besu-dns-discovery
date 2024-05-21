@@ -1,0 +1,108 @@
+// SPDX-License-Identifier: Apache-2.0
+plugins {
+    alias(libs.plugins.jvm)
+    alias(libs.plugins.jreleaser)
+    id 'java-library'
+    id 'maven-publish'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // This dependency is exported to consumers, that is to say found on their compile classpath.
+    //api libs....
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation libs.bundles.tuweni
+    implementation libs.slf4j.api
+    implementation libs.bundles.vertx
+
+    compileOnly libs.bcprov.jdk15on
+
+    testImplementation libs.tuweni.junit
+    testImplementation libs.bcprov.jdk15on
+}
+
+testing {
+    suites {
+        // Configure the built-in test suite
+        test {
+            // Use Kotlin Test test framework
+            useKotlinTest('1.9.22')
+        }
+    }
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    sourceCompatibility = JavaVersion.VERSION_17
+    withJavadocJar()
+    withSourcesJar()
+    group = 'io.consensys.protocols'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'io.consensys.protocols'
+            artifactId = 'besu-dns-discovery'
+            version = project.version
+
+            from components.java
+
+            pom {
+                name = 'besu-dns-discovery'
+                description = 'Fork of Tuweni DNS Discovery'
+                url = 'https://github.com/Consensys/besu-dns-discovery'
+                inceptionYear = '2024'
+                licenses {
+                    license {
+                        name = 'Apache-2.0'
+                        url = 'https://spdx.org/licenses/Apache-2.0.html'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'Protocols Team'
+                        email = 'devops@consensys.net'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/Consensys/besu-dns-discovery.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:Consensys/besu-dns-discovery.git'
+                    url = 'https://github.com/Consensys/besu-dns-discovery.git'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir('staging-deploy')
+        }
+    }
+}
+
+jreleaser {
+    signing {
+        active = 'ALWAYS'
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                sonatype {
+                    active = 'ALWAYS'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository('build/staging-deploy')
+                }
+            }
+        }
+    }
+}
