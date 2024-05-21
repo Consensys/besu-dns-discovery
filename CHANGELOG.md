@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial project forked from Tuweni [dns discovery](https://github.com/tmio/tuweni/tree/main/dns-discovery)
+- Move DNS error log to debug level as it is spammy[#2](https://github.com/Consensys/besu-dns-discovery/pull/2)
+- Catch all exceptions to avoid any uncaught exceptions [#3](https://github.com/Consensys/besu-dns-discovery/pull/3)
 - Don't wait 10 minutes (initial delay) but start DNS discovery immediately [#4](https://github.com/Consensys/besu-dns-discovery/pull/4)
 
 ## [0.0.1] - 2024-05-21

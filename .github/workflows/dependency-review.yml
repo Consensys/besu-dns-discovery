@@ -12,9 +12,11 @@ jobs:
   dependency-review:
     runs-on: ubuntu-latest
     steps:
-      # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+      #  This action scans your pull requests for dependency changes, and will raise an error if any vulnerabilities or
+      #  invalid licenses are being introduced.
+      # See https://github.com/actions/dependency-review-action
       - name: 'Dependency Review'
-        uses: actions/dependency-review-action@d211a39090cba0cdce485f2a0b1f28f39ccda0c9 # v3.3.2
+        uses: actions/dependency-review-action@0c155c5e8556a497adf53f2c18edabf945ed8e70 #4.3.2
         with:
           retry-on-snapshot-warnings: true
           retry-on-snapshot-warnings-timeout: 600
