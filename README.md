@@ -1,6 +1,7 @@
 # besu-dns-discovery
 
 [![CI](https://github.com/consensys/besu-dns-discovery/workflows/CI/badge.svg)](https://github.com/consensys/besu-dns-discovery/actions)
+![Maven Central Version](https://img.shields.io/maven-central/v/io.consensys.protocols/besu-dns-discovery)
 
 `besu-dns-discovery` is a port of Tuweni's [dns-discovery](https://github.com/tmio/tuweni/tree/main/dns-discovery) module which is used in [Hyperledger Besu](https://github.com/hyperledger/besu).
 
